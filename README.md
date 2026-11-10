@@ -1,20 +1,19 @@
-# Taller 11 · Ejercicio 3 — BurgerLab
+# Ejercicio 3 — BurgerLab
 
-Programación 1 (POO) · Universidad Libre · Docente: Andrés Castaño
+Programación 1 · Universidad Libre · Docente: Andrés Castaño
 
-## Situación
-El pedido 1 pidió tocineta y salió con queso. Nadie entiende qué significa cada `true/false` del constructor, los valores por defecto salen en `null` y se aceptan pedidos imposibles.
+## Cómo ejecutarlo
 
-## Cómo ejecutar
 ```bash
 javac -d out src/*.java
 java -cp out Main
 ```
-Al final de la salida, la línea **ESPERADO** dice cómo debe verse el programa cuando quede corregido.
 
-## Qué hacer
-1. Ejecute el código tal como está y observe la diferencia con lo **ESPERADO**.
-2. Identifique en el código la(s) línea(s) que delatan el problema.
-3. Decida qué patrón creacional aplica (Singleton, Factory Method o Builder) y refactorice.
-4. Ajuste `Main.java` solo en lo necesario para usar su solución (no borre los casos de prueba).
-5. Haga commit y push de su solución en este repositorio.
+## Qué hace
+
+Arma los pedidos de hamburguesas con proteína, porciones, pan, ingredientes extra y salsa.
+
+## Qué se resolvió
+
+- **Antes:** el constructor tenía nueve parámetros, con varios `boolean` seguidos y `null` como relleno. Nadie sabía qué significaba cada valor (el pedido 1 salió con queso en vez de tocineta), el pan y la salsa quedaban en `null` y se aceptaban pedidos imposibles como 7 porciones.
+- **Ahora:** se aplicó **Builder**. Cada ingrediente se agrega por su nombre (`conTocineta()`, `conQueso()`, ...). El pan por defecto es brioche y la salsa por defecto es "ninguna". La proteína y las porciones son obligatorias, y `build()` rechaza con una excepción los pedidos de más de 3 porciones
